@@ -1,0 +1,16 @@
+<mvc:View 
+    controllerName="quizzapp.cdvproject.controller.View1"
+    xmlns:mvc="sap.ui.core.mvc" 
+    xmlns="sap.m">
+    
+    <Page id="page" title="Quizz App">
+        <content>
+            <VBox class="sapUiContentPadding">
+                <Title text="¿Cuál es el mejor lenguaje para SAP?" level="H2" class="sapUiSmallMarginBottom"/>
+                
+                <Button text="TypeScript" press=".onAnswer" type="Emphasized" class="sapUiSmallMarginBottom" width="100%"/>
+                <Button text="JavaScript" press=".onAnswer"  class="sapUiSmallMarginBottom" width="100%"/>
+            </VBox>
+        </content>
+    </Page>
+</mvc:View>
