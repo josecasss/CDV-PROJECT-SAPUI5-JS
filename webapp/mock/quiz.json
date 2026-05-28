@@ -1,0 +1,13 @@
+[
+  {
+    "question": "What is SAPUI5?",
+    "options": [
+      "A UI framework for enterprise web apps",
+      "A database engine",
+      "A spreadsheet tool",
+      "An email server"
+    ],
+    "correctIndex": 0,
+    "explanation": "SAPUI5 is SAP's UI framework for building enterprise web applications."
+  }
+]

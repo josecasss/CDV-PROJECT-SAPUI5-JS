@@ -1,0 +1,55 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+
+    <Panel id="quizSourcePanel" class="quizSourcePanel sapUiMediumMarginBottom" expandable="true" expanded="true" headerText="Quiz input and data source">
+        <VBox id="quizSourcePanelContent" class="quizSourcePanelContent">
+            <Text id="quizInputEyebrow" text="Quiz input" class="quizEyebrow" />
+            <Title id="quizInputTitle" text="Load questions from JSON or an API" level="H2" class="quizSectionTitle" />
+            <Text
+                id="quizInputDescription"
+                text="Paste JSON, load a sample, or point the app to a quiz API that returns an array or a questions object."
+                wrapping="true"
+                class="quizMutedText" />
+
+            <MessageStrip
+                id="quizInputFeedback"
+                text="{quiz>/inputFeedbackMessage}"
+                type="{quiz>/inputFeedbackType}"
+                visible="{= !!${quiz>/inputFeedbackMessage} }"
+                showIcon="true"
+                class="sapUiSmallMarginTop" />
+
+            <VBox id="quizJsonGroup" class="quizFieldGroup sapUiMediumMarginTop">
+                <HBox id="quizJsonGroupHeader" justifyContent="SpaceBetween" alignItems="Center">
+                    <Label id="quizJsonLabel" text="Paste quiz questions as JSON" labelFor="quizJsonInput" />
+                    <Text id="quizJsonHint" text="Accepts an array or a questions object" class="quizHint" />
+                </HBox>
+                <TextArea
+                    id="quizJsonInput"
+                    rows="10"
+                    growing="true"
+                    width="100%"
+                    placeholder='[{"question":"What is SAPUI5?","options":["Framework","Database"],"correctIndex":0,"explanation":"SAPUI5 is a UI framework."}]' />
+                <HBox id="quizJsonActions" class="quizActionRow" wrap="Wrap" justifyContent="Start">
+                    <Button id="loadJsonQuizButton" text="Load JSON Quiz" type="Emphasized" press=".onLoadQuizFromJson" />
+                    <Button id="demoJsonButton" text="Load demo JSON" type="Transparent" press=".onUseDemoQuiz" />
+                    <Button id="clearInputsButton" text="Clear" type="Ghost" press=".onClearQuizInputs" />
+                </HBox>
+            </VBox>
+
+            <VBox id="quizUrlGroup" class="quizFieldGroup sapUiMediumMarginTop">
+                <Label id="quizUrlLabel" text="Or load from a quiz API URL" labelFor="quizApiUrlInput" />
+                <Input
+                    id="quizApiUrlInput"
+                    placeholder="https://example.com/quiz.json"
+                    type="Url"
+                    width="100%" />
+                <Button id="loadUrlQuizButton" text="Load from URL" press=".onLoadQuizFromUrl" width="100%" />
+            </VBox>
+
+            <Button id="sampleQuizButton" text="Reset to sample quiz" type="Transparent" press=".onRestartQuiz" class="sapUiSmallMarginTop" />
+        </VBox>
+    </Panel>
+
+</core:FragmentDefinition>

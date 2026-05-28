@@ -1,1 +1,141 @@
-/* Enter your custom styles here */
+html,
+body,
+body > div,
+#container,
+#container-uiarea {
+	height: 100%;
+}
+
+.sapUiBody {
+	background:
+		radial-gradient(circle at top left, rgba(38, 112, 255, 0.16) 0, rgba(38, 112, 255, 0.16) 18%, transparent 18%),
+		radial-gradient(circle at bottom right, rgba(255, 164, 76, 0.14) 0, rgba(255, 164, 76, 0.14) 16%, transparent 16%),
+		linear-gradient(135deg, #eef7ff 0%, #f5f7fb 48%, #fff5ea 100%);
+}
+
+.quizPage {
+	background: transparent;
+}
+
+.quizShell {
+	max-width: 920px;
+	margin: 0 auto;
+	gap: 1rem;
+}
+
+.quizCard {
+	background: rgba(255, 255, 255, 0.84);
+	border: 1px solid rgba(15, 30, 50, 0.08);
+	border-radius: 28px;
+	box-shadow: 0 24px 70px rgba(15, 30, 50, 0.12);
+	padding: 2rem;
+	-webkit-backdrop-filter: blur(12px);
+	backdrop-filter: blur(12px);
+}
+
+.quizSourcePanel {
+	border-style: dashed;
+	box-shadow: 0 16px 42px rgba(15, 30, 50, 0.08);
+	background: rgba(247, 250, 255, 0.9);
+}
+
+.quizSourcePanelContent {
+	gap: 1rem;
+}
+
+.quizHint {
+	color: #6d7a8a;
+	font-size: 0.8rem;
+}
+
+.quizActionRow {
+	gap: 0.5rem;
+	flex-wrap: wrap;
+}
+
+.quizActionRow .sapMBtn {
+	min-width: 9rem;
+}
+
+.quizStatsRow {
+	gap: 0.65rem;
+	flex-wrap: wrap;
+	margin-top: 0.5rem;
+}
+
+.quizEyebrow {
+	color: #2457c5;
+	font-size: 0.75rem;
+	font-weight: 700;
+	letter-spacing: 0.14em;
+	text-transform: uppercase;
+}
+
+.quizSectionTitle {
+	margin-top: 0.15rem;
+}
+
+.quizFieldGroup {
+	gap: 0.55rem;
+}
+
+.quizFieldGroup .sapMLabel {
+	font-weight: 600;
+	color: #31445a;
+}
+
+.quizFieldGroup .sapMInputBase,
+.quizFieldGroup .sapMTextArea {
+	border-radius: 16px;
+}
+
+.quizFieldGroup .sapMBtn {
+	width: 100%;
+}
+
+.quizTitle {
+	margin-top: 0.25rem;
+}
+
+.quizQuestion {
+	margin: 0;
+}
+
+.quizMutedText {
+	color: #5f6b7a;
+}
+
+.quizAnswers {
+	gap: 0.75rem;
+}
+
+.quizAnswers .sapMBtn {
+	width: 100%;
+}
+
+.quizProgress .sapMPI {
+	border-radius: 999px;
+	height: 0.8rem;
+	overflow: hidden;
+}
+
+.quizScoreRow {
+	gap: 1rem;
+}
+
+.quizResultsList {
+	margin-top: 1rem;
+}
+
+.quizReviewItem {
+	gap: 0.35rem;
+	padding: 0.25rem 0 0.75rem;
+}
+
+.quizResults .sapMObjectStatus {
+	margin-right: 0.5rem;
+}
+
+.quizResults .sapMObjectStatus:last-child {
+	margin-right: 0;
+}

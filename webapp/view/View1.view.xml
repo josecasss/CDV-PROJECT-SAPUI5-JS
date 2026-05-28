@@ -1,15 +1,127 @@
-<mvc:View 
+<mvc:View
     controllerName="quizzapp.cdvproject.controller.View1"
-    xmlns:mvc="sap.ui.core.mvc" 
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:core="sap.ui.core"
     xmlns="sap.m">
-    
-    <Page id="page" title="Quizz App">
+
+    <Page id="page" title="SAP Quiz Challenge" class="quizPage">
         <content>
-            <VBox class="sapUiContentPadding">
-                <Title text="¿Cuál es el mejor lenguaje para SAP?" level="H2" class="sapUiSmallMarginBottom"/>
-                
-                <Button text="TypeScript" press=".onAnswer" type="Emphasized" class="sapUiSmallMarginBottom" width="100%"/>
-                <Button text="JavaScript" press=".onAnswer"  class="sapUiSmallMarginBottom" width="100%"/>
+            <VBox id="quizShell" class="sapUiContentPadding quizShell">
+                <core:Fragment fragmentName="quizzapp.cdvproject.view.QuizInput" type="XML" />
+
+                <VBox id="quizCard" class="quizCard" busy="{quiz>/loading}" busyIndicatorDelay="0">
+                    <VBox id="quizInProgressPanel" visible="{= !${quiz>/quizCompleted} }">
+                        <VBox id="quizHeader" class="quizHeader sapUiSmallMarginBottom">
+                            <Text id="quizHeaderEyebrow" text="Interactive SAP knowledge quiz" class="quizEyebrow" />
+                            <Title id="quizHeaderTitle" text="SAP Quiz Challenge" level="H1" class="quizTitle" />
+                            <Text
+                                id="quizHeaderDescription"
+                                text="Answer five questions about SAP products, cloud, and development."
+                                wrapping="true"
+                                class="quizMutedText" />
+                            <HBox id="quizHeaderStats" class="quizStatsRow" justifyContent="Start" alignItems="Center">
+                                <ObjectStatus id="quizProgressChip" text="{quiz>/progressText}" state="Success" />
+                                <ObjectStatus id="quizScoreChip" text="{= 'Score ' + ${quiz>/score} + '/' + ${quiz>/totalQuestions} }" state="Information" />
+                            </HBox>
+                        </VBox>
+
+                        <VBox id="quizProgressContainer" class="quizProgress sapUiMediumMarginBottom">
+                            <ProgressIndicator
+                                id="quizProgressIndicator"
+                                percentValue="{quiz>/progressValue}"
+                                displayValue="{quiz>/progressText}"
+                                state="Success" />
+                        </VBox>
+
+                        <VBox id="questionBlock" class="sapUiSmallMarginBottom">
+                            <Title id="currentQuestionTitle" text="{quiz>/currentQuestion/question}" level="H2" class="quizQuestion" wrapping="true" />
+                            <Text id="questionPrompt" text="Choose the best answer:" class="quizMutedText sapUiTinyMarginTop" />
+                        </VBox>
+
+                        <VBox id="quizAnswers" class="quizAnswers">
+                            <Button
+                                id="answerButton0"
+                                text="{quiz>/currentQuestion/options/0}"
+                                press=".onAnswerPress"
+                                width="100%">
+                                <customData>
+                                    <core:CustomData key="answerIndex" value="0" />
+                                </customData>
+                            </Button>
+                            <Button
+                                id="answerButton1"
+                                text="{quiz>/currentQuestion/options/1}"
+                                press=".onAnswerPress"
+                                width="100%">
+                                <customData>
+                                    <core:CustomData key="answerIndex" value="1" />
+                                </customData>
+                            </Button>
+                            <Button
+                                id="answerButton2"
+                                text="{quiz>/currentQuestion/options/2}"
+                                press=".onAnswerPress"
+                                width="100%">
+                                <customData>
+                                    <core:CustomData key="answerIndex" value="2" />
+                                </customData>
+                            </Button>
+                            <Button
+                                id="answerButton3"
+                                text="{quiz>/currentQuestion/options/3}"
+                                press=".onAnswerPress"
+                                width="100%">
+                                <customData>
+                                    <core:CustomData key="answerIndex" value="3" />
+                                </customData>
+                            </Button>
+                            <Button
+                                id="answerButton4"
+                                text="{quiz>/currentQuestion/options/4}"
+                                press=".onAnswerPress"
+                                width="100%">
+                                <customData>
+                                    <core:CustomData key="answerIndex" value="4" />
+                                </customData>
+                            </Button>
+                        </VBox>
+                    </VBox>
+
+                    <VBox id="quizResults" visible="{quiz>/quizCompleted}" class="quizResults">
+                        <Text id="quizResultsEyebrow" text="Quiz completed" class="quizEyebrow" />
+                        <Title id="quizResultsTitle" text="Your Results" level="H1" class="quizTitle" />
+                        <Text id="quizResultsMessage" text="{quiz>/resultMessage}" wrapping="true" class="quizMutedText" />
+
+                        <HBox id="quizScoreRow" class="quizScoreRow sapUiMediumMarginTop sapUiMediumMarginBottom" justifyContent="SpaceBetween" alignItems="Center">
+                            <ObjectNumber id="quizScoreNumber" number="{quiz>/score}" unit="correct answers" state="Success" />
+                            <Text
+                                id="quizScoreHint"
+                                text="{= ${quiz>/score} === ${quiz>/totalQuestions} ? 'Perfect score. You nailed the SAP fundamentals.' : 'Review the missed answers below and try again.' }"
+                                wrapping="true"
+                                class="quizMutedText" />
+                        </HBox>
+
+                        <List id="quizResultsList" items="{quiz>/review}" class="quizResultsList" inset="false">
+                            <CustomListItem id="reviewListItem">
+                                <VBox id="reviewItem" class="quizReviewItem">
+                                    <HBox id="reviewItemHeader" justifyContent="SpaceBetween" alignItems="Start">
+                                        <Title id="reviewQuestionNumber" text="{= 'Question ' + ${quiz>questionNumber} }" level="H4" />
+                                        <ObjectStatus
+                                            id="reviewStatus"
+                                            text="{= ${quiz>isCorrect} ? 'Correct' : 'Incorrect' }"
+                                            state="{= ${quiz>isCorrect} ? 'Success' : 'Error' }" />
+                                    </HBox>
+                                    <Text id="reviewQuestionText" text="{quiz>question}" wrapping="true" />
+                                    <Text id="reviewSelectedAnswer" text="{= 'Your answer: ' + ${quiz>selectedAnswer} }" wrapping="true" />
+                                    <Text id="reviewCorrectAnswer" text="{= 'Correct answer: ' + ${quiz>correctAnswer} }" wrapping="true" />
+                                    <Text id="reviewExplanation" text="{quiz>explanation}" wrapping="true" class="quizMutedText" />
+                                </VBox>
+                            </CustomListItem>
+                        </List>
+
+                        <Button id="restartQuizButton" text="Restart Quiz" type="Emphasized" press=".onRestartQuiz" class="sapUiMediumMarginTop" />
+                    </VBox>
+                </VBox>
             </VBox>
         </content>
     </Page>
