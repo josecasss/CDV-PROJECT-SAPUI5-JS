@@ -1,5 +1,5 @@
 {
-  "_version": "1.84.0",
+  "_version": "2.0.0",
   "sap.app": {
     "id": "quizzapp.cdvproject",
     "type": "application",
@@ -68,9 +68,7 @@
         "transition": "slide",
         "type": "View",
         "viewType": "XML",
-        "path": "quizzapp.cdvproject.view",
-        "async": true,
-        "viewPath": "quizzapp.cdvproject.view"
+        "path": "quizzapp.cdvproject.view"
       },
       "routes": [
         {
@@ -88,11 +86,10 @@
         }
       }
     },
-    "rootView": {
-      "viewName": "quizzapp.cdvproject.view.App",
-      "type": "XML",
-      "id": "App",
-      "async": true
-    }
+      "rootView": {
+        "viewName": "quizzapp.cdvproject.view.App",
+        "type": "XML",
+        "id": "App"
+      }
   }
 }
